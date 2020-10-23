@@ -1,11 +1,45 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, Button, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, Alert, TextInput} from 'react-native'
 
 class HolaJC extends Component {
 
-  saludo = () => { Alert.alert("Hola JC")}
+  constructor(props){
+    super(props);
+    this.state = {
+      nombreUsuario: " "
+    }
+  }
+
+  saludo = () => { 
+
+    var confirmado = false
+
+    Alert.alert(
+      "Confirmación",
+      "¿Quieres continuar?",
+      [
+        {
+          text: "Cancelar",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", 
+          onPress: () => (confirmado) => this.setState(true) }
+      ],
+      { cancelable: false }
+    );
+
+    if(confirmado == true){
+      Alert.alert("Bien!")
+    }
+    
+  }
 
   render() {
+
+    let {nombreUsuario} = this.state;
+    const bienvenido = "Bienvenido ";
+
     return (
       <View style = {styles.container}>
 
@@ -23,7 +57,13 @@ class HolaJC extends Component {
         </View>
 
         <View style = {styles.body}>
-          <Button title = "Aplicación JC" onPress = {this.saludo}/>
+          <TextInput placeholder = "¿Cuál es su Nombre?" 
+                    onChangeText = { (nombreUsuario) => this.setState({nombreUsuario})}/>
+
+          <Button title = {bienvenido + nombreUsuario} onPress = {this.saludo}/>
+
+
+
         </View>
 
       </View>
