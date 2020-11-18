@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Image, Button, Alert, TextInput} from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import DetalleScreen from './DetalleScreen';
 
 class PantallaPrincipal extends Component {
 
@@ -27,7 +24,7 @@ class PantallaPrincipal extends Component {
             style: "cancel"
           },
           { text: "OK", 
-            onPress: () => { this.props.navigation.navigate('Formulario')} }
+            onPress: () => { this.props.navigation.navigate('Listado')} }
         ],
         { cancelable: false }
       );

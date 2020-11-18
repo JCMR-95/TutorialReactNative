@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-class DetalleScreen extends React.Component {
+class DetallesScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetalleScreen;
+export default DetallesScreen;

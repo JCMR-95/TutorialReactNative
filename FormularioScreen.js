@@ -10,7 +10,7 @@ import {
 
 import firebase from "./database/firebase";
 
-const FormularioScreen = () => {
+const FormularioScreen = (props) => {
 
   const [state, setState] = useState({
     nombre: '',
@@ -22,9 +22,9 @@ const FormularioScreen = () => {
     setState({ ...state, [dato]: value });
   };
 
-  const saveNewUser = async () => {
+  const guardarDatos = async () => {
     if (state.nombre === "") {
-      Alert.alert("Debes ingresar un Nombre");
+      Alert.alert("Debes ingresar un Nombre")
     } else {
 
       try {
@@ -33,10 +33,9 @@ const FormularioScreen = () => {
           correo: state.correo,
           telefono: state.telefono,
         });
+        Alert.alert("Dato Ingresado!")
+        props.navigation.navigate('Listado')
 
-        Alert.alert("Datos guardados!");
-
-        //props.navigation.navigate("UsersList");
       } catch (error) {
         console.log(error)
       }
@@ -72,7 +71,7 @@ const FormularioScreen = () => {
       </View>
 
       <View style={styles.button}>
-        <Button title ="Guardar Datos" onPress = {() => saveNewUser()}/>
+        <Button title ="Guardar Datos" onPress = {() => guardarDatos()}/>
       </View>
       
     </ScrollView>

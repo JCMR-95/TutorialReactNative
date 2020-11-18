@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import PantallaPrincipal from './PantallaPrincipal'
 import FormularioScreen from './FormularioScreen';
+import ListadoScreen from './ListadoScreen';
+import DetallesScreen from './DetallesScreen';
 
 const Stack = createStackNavigator();
 
@@ -13,14 +15,10 @@ class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
-            name="Bienvenido"
-            component={PantallaPrincipal}
-          />
-          <Stack.Screen
-            name="Formulario"
-            component={FormularioScreen}
-          />
+          <Stack.Screen name="Bienvenido" component={PantallaPrincipal} />
+          <Stack.Screen name="Listado" component={ListadoScreen} />
+          <Stack.Screen name="Formulario" component={FormularioScreen} />
+          <Stack.Screen name="Detalles" component={DetallesScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
