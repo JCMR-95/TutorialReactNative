@@ -6,31 +6,35 @@ class PantallaPrincipal extends Component {
   constructor(props){
     super(props);
     this.state = {
-      nombreUsuario: " "
+      nombreUsuario: " ",
+      contraseña: " "
     }
   }
 
-  saludo = () => { 
+  confirmacion = () => { 
 
-    if(this.state.nombreUsuario != ' '){
+    if(this.state.nombreUsuario == 'Administrador'){
+      if(this.state.contraseña == 'administrador'){
 
-      Alert.alert(
-        "Confirmación",
-        this.state.nombreUsuario +" ¿Quieres continuar?",
-        [
-          {
-            text: "Cancelar",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
-          },
-          { text: "OK", 
-            onPress: () => { this.props.navigation.navigate('Listado')} }
-        ],
-        { cancelable: false }
-      );
-
+        Alert.alert(
+          "Confirmación",
+          this.state.nombreUsuario +" ¿Quieres continuar?",
+          [
+            {
+              text: "Cancelar",
+              onPress: () => console.log("Cancelar"),
+              style: "cancel"
+            },
+            { text: "OK", 
+              onPress: () => { this.props.navigation.navigate('Listado')} }
+          ],
+          { cancelable: false }
+        );
+      }else{
+        Alert.alert("Contraseña incorrecta")
+      }
     }else{
-      Alert.alert("Debe ingresar un Nombre")
+      Alert.alert("Nombre incorrecto")
     }
     
   }
@@ -57,10 +61,12 @@ class PantallaPrincipal extends Component {
         </View>
 
         <View style = {styles.body}>
-          <TextInput placeholder = "¿Cuál es su Nombre?" 
+          <TextInput placeholder = "Ingrese Nombre" 
                     onChangeText = { (nombreUsuario) => this.setState({nombreUsuario})}/>
+          <TextInput placeholder = "Ingrese Contraseña" secureTextEntry={true}
+                    onChangeText = { (contraseña) => this.setState({contraseña})}/>
 
-          <Button title = {bienvenido + nombreUsuario} onPress = {this.saludo}/>
+          <Button title = {bienvenido} onPress = {this.confirmacion}/>
 
         </View>
 
