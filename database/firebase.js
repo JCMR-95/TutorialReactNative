@@ -2,16 +2,15 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDVRW9ApIxelfchVnOUZ82Egy3Z5Lg1TqA",
-    authDomain: "aplicacionreactnative.firebaseapp.com",
-    databaseURL: "https://aplicacionreactnative.firebaseio.com",
-    projectId: "aplicacionreactnative",
-    storageBucket: "aplicacionreactnative.appspot.com",
-    messagingSenderId: "983861496117",
-    appId: "1:983861496117:web:c0d4eb7f423908c47ee47c",
-    measurementId: "G-F3LVLZCZRQ"
-  };
-  // Initialize Firebase
+  apiKey: "AIzaSyCwRmQNEkugu_lN2AZduAkzD6Judb_vdtQ",
+  authDomain: "aplicacionjc-33b74.firebaseapp.com",
+  databaseURL: "https://aplicacionjc-33b74.firebaseio.com",
+  projectId: "aplicacionjc-33b74",
+  storageBucket: "aplicacionjc-33b74.appspot.com",
+  messagingSenderId: "166324019217",
+  appId: "1:166324019217:web:7339d1758d42c2b7a2d1b0"
+};
+// Initialize Firebase
 
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);

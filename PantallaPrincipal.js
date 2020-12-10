@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Image, Button, Alert, TextInput} from 'react-native'
+import firebase from "./database/firebase";
 
 class PantallaPrincipal extends Component {
 
@@ -7,36 +8,58 @@ class PantallaPrincipal extends Component {
     super(props);
     this.state = {
       nombreUsuario: " ",
-      contraseña: " "
+      contrasena: " "
     }
   }
 
-  confirmacion = () => { 
+  confirmacion = async() => { 
 
-    if(this.state.nombreUsuario == 'Administrador'){
-      if(this.state.contraseña == 'administrador'){
+    const obtenerCantAdmins = firebase.db.collection("Administradores").doc("CantidadAdmins")
+    const getDoc = await obtenerCantAdmins.get();
+    const cantAdmins = getDoc.data();
 
-        Alert.alert(
-          "Confirmación",
-          this.state.nombreUsuario +" ¿Quieres continuar?",
-          [
-            {
-              text: "Cancelar",
-              onPress: () => console.log("Cancelar"),
-              style: "cancel"
-            },
-            { text: "OK", 
-              onPress: () => { this.props.navigation.navigate('Listado')} }
-          ],
-          { cancelable: false }
-        );
-      }else{
-        Alert.alert("Contraseña incorrecta")
+    var nombreCorrecto = false
+    var contrasenaCorrecta = false
+
+    for (var i = 1; i <= cantAdmins.Cantidad; i++) {
+      
+      var ID = "admin" + i
+      const obtenerAdmin = firebase.db.collection("Administradores").doc(ID)
+      const doc = await obtenerAdmin.get();
+      const administradores = doc.data();
+
+      if(this.state.nombreUsuario == administradores.nombreUsuario){
+        var nombreCorrecto = true
+        if(this.state.contrasena == administradores.contrasena){
+          var contrasenaCorrecta = true
+        }
       }
-    }else{
-      Alert.alert("Nombre incorrecto")
+      if(nombreCorrecto == true && contrasenaCorrecta == true){
+        break
+      }
     }
-    
+
+
+    if(nombreCorrecto == true && contrasenaCorrecta == true){
+
+      Alert.alert(
+        "Confirmación",
+        this.state.nombreUsuario +" ¿Quieres continuar?",
+        [
+          {
+            text: "Cancelar",
+            onPress: () => console.log("Cancelar"),
+            style: "cancel"
+          },
+          { text: "OK", 
+            onPress: () => { this.props.navigation.navigate('Listado')} }
+        ],
+        { cancelable: false }
+      );
+    }else{
+      Alert.alert("Usuario o Contraseña incorrecta")
+    }
+
   }
 
   render() {
@@ -64,7 +87,7 @@ class PantallaPrincipal extends Component {
           <TextInput placeholder = "Ingrese Nombre" 
                     onChangeText = { (nombreUsuario) => this.setState({nombreUsuario})}/>
           <TextInput placeholder = "Ingrese Contraseña" secureTextEntry={true}
-                    onChangeText = { (contraseña) => this.setState({contraseña})}/>
+                    onChangeText = { (contrasena) => this.setState({contrasena})}/>
 
           <Button title = {bienvenido} onPress = {this.confirmacion}/>
 

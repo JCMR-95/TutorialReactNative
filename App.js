@@ -7,6 +7,7 @@ import PantallaPrincipal from './PantallaPrincipal'
 import FormularioScreen from './FormularioScreen';
 import ListadoScreen from './ListadoScreen';
 import DetallesScreen from './DetallesScreen';
+import AgregarAdminScreen from './AgregarAdminScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Stack.Screen name="Listado" component={ListadoScreen} />
           <Stack.Screen name="Formulario" component={FormularioScreen} />
           <Stack.Screen name="Detalles" component={DetallesScreen} />
+          <Stack.Screen name="AgregarAdmin" component={AgregarAdminScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

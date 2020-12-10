@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "proyectoJC",
-    "slug": "proyectoJC",
-    "version": "1.0.0",
+    "name": "AplicacionJC",
+    "slug": "AplicacionJC",
+    "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/tree.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,10 +17,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "yes"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.jcmr.proyectoJC"
     }
   }
 }

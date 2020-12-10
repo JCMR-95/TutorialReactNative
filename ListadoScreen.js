@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Button,
-  View,
-  StyleSheet,
-  TextInput,
-  ScrollView,
-  Text,
-  Alert
+  ScrollView
 } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import firebase from "./database/firebase";
@@ -34,6 +29,7 @@ const ListadoScreen = (props) => {
   return (
     <ScrollView>
       <Button title = "Crear Usuario" onPress = {() => props.navigation.navigate('Formulario')}/>
+      <Button title = "Agregar Administrador" onPress = {() => props.navigation.navigate('AgregarAdmin')}/>
       {
         users.map(user => {
           return(
@@ -54,7 +50,7 @@ const ListadoScreen = (props) => {
               />
               <ListItem.Content>
                 <ListItem.Title>{user.nombre}</ListItem.Title>
-                <ListItem.Subtitle>{user.correo}</ListItem.Subtitle>
+                <ListItem.Subtitle>{user.telefono}</ListItem.Subtitle>
               </ListItem.Content>
             </ListItem>
           );
